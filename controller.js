@@ -7,15 +7,16 @@ const port = new SerialPort(path, { baudRate: baudRate });
 const parser = new Readline();
 port.pipe(parser);
 
-parser.on('data', line => console.log(`> ${line}`))
+parser.on('data', line => console.log(`received data > ${line}`))
 port.write('ROBOT POWER ON\n')
 
 setInterval(() => {
     let choices = "abc";
-    let choice = choices[parseInt(choices.length * Math.random())]
+    let choice = choices[parseInt(choices.length * Math.random())];
+    choice = `<${choice}>`
     port.write(choice, (err) => {
         if(err) { console.log(`error sending data through port baudRate: ${baudRate} command: ${choices}`); }
         console.log(`sent sequence: ${choice}`);
     });
-}, 100);
+}, 1000);
 //> ROBOT ONLINE

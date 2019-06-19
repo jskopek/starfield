@@ -25,3 +25,10 @@ Before you run this, you need to determine the arduino's COM port and set the `c
 The controller will send commands on the serial port with baud rate of 9600. It will send an 'a', 'b', or 'c' command at random every 100ms
 
 To get this running, just run `npm install`, then `npm controller.js`
+
+
+# Notes
+
+If you want to compile to Arduino from the command line (e.g. editing in an IDE) you can do so by calling the arduino executable with the `--upload` and `--port` params. EG:
+
+`arduino.exe --upload ~\starfield-arduino\starfield-arduino.ino --port COM3`
