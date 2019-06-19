@@ -9,18 +9,26 @@ void initializeEffect() {
 }
 
 void reactToData() {
-    if (newData == true) {
-      if(strcmp(receivedChars, "c") == 0) {
-          color = Color(0, 0, 255);
-          Serial.print("reactToData ... ");
-          Serial.println(receivedChars);
-      } else if(strcmp(receivedChars, "b") == 0) {
-        color = Color(0, 255, 0);
-      } else {
-        color = Color(255, 0, 0);
-      }
-        newData = false;
+  if (newData == true) {
+    Serial.print("reactToData ... ");
+    Serial.println(receivedChars);
+    
+    const char delimiter[4] = ";";
+    char* lightData;
+    
+    // get the first light data
+    lightData = strtok(receivedChars, delimiter);
+    
+    // loop through each light
+    while(lightData != 0) {
+      color = stringToColor(lightData);
+
+      // go through other lights
+      lightData = strtok(0, delimiter);
     }
+    
+    newData = false;
+  }
 }
 
 
@@ -82,4 +90,31 @@ void recvWithStartEndMarkers() {
         }
     }
 }
+
+
+
+uint32_t stringToColor(char* red) {
+    // takes a char* string with "int,int,int" format, where int is a number from 0-255
+    // that represents red, green, and blue
+    // returns a uint32_t color string
+    const char ch = ',';
+    char *green = strchr(red, ch);
+    *green = 0; // split red from rest
+    green++;
+
+
+    char *blue = strchr(green, ch);
+    *blue = 0; // split green from rest
+    blue++;
+
+
+    printf("Red: %s \n", red);
+    printf("Green: %s \n", green);
+    printf("Blue: %s \n", blue);
+    printf("\n\n");
+
+    uint32_t color = Color(atoi(red), atoi(green), atoi(blue)); 
+    return color;
+}
+
 

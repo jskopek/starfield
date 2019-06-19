@@ -11,12 +11,20 @@ parser.on('data', line => console.log(`received data > ${line}`))
 port.write('ROBOT POWER ON\n')
 
 setInterval(() => {
-    let choices = "abc";
-    let choice = choices[parseInt(choices.length * Math.random())];
-    choice = `<${choice}>`
-    port.write(choice, (err) => {
+    let lightSequence = [];
+    for(var pixelNum = 0; pixelNum < 2; pixelNum++) {
+        let red = parseInt(255 * Math.random());
+        let green = parseInt(255 * Math.random());
+        let blue = parseInt(255 * Math.random());
+        lightSequence.push([red, green, blue]);
+    }
+
+    let lightSequenceString = lightSequence.map(rgbArray => rgbArray.join(',')).join(';')
+
+    let command = `<${lightSequenceString}>`
+    port.write(command, (err) => {
         if(err) { console.log(`error sending data through port baudRate: ${baudRate} command: ${choices}`); }
-        console.log(`sent sequence: ${choice}`);
+        console.log(`sent command: ${command}`);
     });
 }, 1000);
 //> ROBOT ONLINE
