@@ -18,6 +18,13 @@ Example: https://www.adafruit.com/product/683
 
 Wire the LED data pin to port 2 and clock pin to port 3 on the arduino
 
+Four variants are provided:
+
+- `starfield-arduino.ino`: Receives commands from the `controller.js` via the 9600 baud serial port
+- `arduino-failsafe-white.ino`: Shows a static white light; does not require computer
+- `arduino-failsafe-white-alt.ino`: Shows a static white light (alternative); does not require computer
+- `arduino-failsafe-color.ino`: Shows a changing wheel of color; does not require computer
+
 # Computer based light generator
 
 Before you run this, you need to determine the arduino's COM port and set the `const path` to the proper port. See this guide for instructions on how to find the port: https://www.mathworks.com/help/supportpkg/arduinoio/ug/find-arduino-port-on-windows-mac-and-linux.html
