@@ -30,6 +30,11 @@ class LEDController {
             this.opened = true;
         })
 
+        // Switches the port into "flowing mode"
+        this.parser.on('data', function (data) {
+            console.log('Data:', data)
+        })
+
     }
     send(ledArray) {
         /* send an array of [r,g,b] values to the LEDs */
