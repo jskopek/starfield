@@ -12,7 +12,15 @@ Code for this is in 'starfield-arduino' folder.
 
 To run, simply plug in an Arduino into a USB port, open the Arduino editor, and upload the code.
 
-You will need to wire your arduino to an Adafruit 36mm Square 12V Digital RGB Pixels strand with WS2801 controller
+# LED Strip Configuration
+
+To use Adafruit NeoPixel LED light strips, upload the starfield-led-strip.ino code
+
+- `starfield-led-strip.ino`: Receives commands from the `controller.js` via the 9600 baud serial port
+
+# Starfield LED Configuration
+
+To use the Adafruit 36mm Square 12V Digital RGB Pixels strand with WS2801 controller, upload the starfield-arduino.ino code
 
 Example: https://www.adafruit.com/product/683
 
