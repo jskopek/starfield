@@ -22,10 +22,10 @@ class LEDController {
         this.port.write('LED CONTROLLER ON\n')
 
 
-        this.port.on('error', function(err) {
+        this.port.on('error', (err) => {
             console.log('Error: ', err.message)
         })
-        this.port.on('open', function(err) {
+        this.port.on('open', (err) => {
             console.log('Port opened!')
             this.opened = true;
         })
