@@ -53,18 +53,23 @@ class LEDController {
     }
 }
 
+var NUM_PIXELS = 20
+var ADDRESS = '/dev/cu.usbmodem14401'
+var PORT = 9600
+//var PORT = 115200
+
 var controller = new LEDController();
-controller.connect('/dev/ttyS3', 9600)
+controller.connect(ADDRESS, PORT)
 
 setInterval(() => {
     let lightSequence = [];
-    for(var pixelNum = 0; pixelNum < 2; pixelNum++) {
+    for(var pixelNum = 0; pixelNum < NUM_PIXELS; pixelNum++) {
         let red = parseInt(255 * Math.random());
         let green = parseInt(255 * Math.random());
         let blue = parseInt(255 * Math.random());
         lightSequence.push([red, green, blue]);
     }
     controller.send(lightSequence);
-}, 1000);
+}, 4000);
 
 
